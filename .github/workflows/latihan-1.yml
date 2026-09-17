@@ -11,3 +11,13 @@ jobs:
         run: sudo apt install nginx -y
       - name: Tes landing page nginx
         run: sudo systemctl start nginx && curl localhost
+      - name: install wget
+        run: sudo apt install wget -y
+      - name: install dpkg cloudflared
+        run: wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+      - name: install full dpkg 
+        run: sudo dpkg -i cloudflared-linux-amd64.deb
+      - name: tunnel try
+        run: cloudflared tunnel --url http://localhost:8080
+
+      
